@@ -1,0 +1,30 @@
+{
+  "name": "test_konkurs",
+  "version": "1.0.0",
+  "authors": [
+    "Vasily Polyn <inglorsan@gmail.com>"
+  ],
+  "description": "test frontend build",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "http://dzenkiedo.tmweb.ru",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.3",
+    "bootstrap-sass-official": "~3.3.3"
+  },
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "bootstrap-sass-official": "~3.3.3"
+  }
+}
