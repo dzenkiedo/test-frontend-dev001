@@ -62,6 +62,17 @@ var config = {
 // 				.pipe(gulp.dest('./public/css'));
 // });
 
+gulp.task('sass:bower', function() {
+	return gulp.src(config.bowerDir + '/bootstrap-sass-official/assets/stylesheets/bootstrap.scss')
+	.pipe(sourcemaps.init())
+	.pipe(sass())
+	.pipe(concat('vendors-style.css'))
+	.pipe(plumber())
+	.pipe(myth())
+	.pipe(sourcemaps.write('./vendors-maps'))
+	.pipe(gulp.dest(config.buildDir.css))
+	.pipe(livereload());
+});
 
 gulp.task('sass', function() {
 	return gulp.src(config.srcDir.sass + '/layout.scss')
@@ -73,7 +84,7 @@ gulp.task('sass', function() {
 		trace: true
 		sourcemap: true
 	}))*/
-	.pipe(concat('main_style.css'))
+	.pipe(concat('main-style.css'))
 	.pipe(plumber())
 	.pipe(myth())
 	.pipe(sourcemaps.write('./maps'))
@@ -115,7 +126,8 @@ gulp.task('html', function() {
 gulp.task('watch', ['server'], function() {
 
 	livereload.listen({ basePath: config.basePath })
-	gulp.watch( config.srcDir.sass + '/*', ['sass']);
+	gulp.watch( config.srcDir.sass + '/*.scss', ['sass']);
+	gulp.watch( config.bowerDir + '/**/*.scss', ['sass:bower']);
 	gulp.watch( config.srcDir.img + '/**/*', ['images']);
 	gulp.watch( config.srcDir.html + '/*.html', ['html']);
 	gulp.watch([ config.srcDir.js + '/*.js'], ['scripts:custom']);
